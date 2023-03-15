@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="15px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>搜索</title>
+    <g id="WMS、TMS、MES相关" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板备份-3" transform="translate(-640.000000, -178.000000)">
+            <g id="编组" transform="translate(517.776486, 169.018014)">
+                <g id="搜索" transform="translate(116.223514, 3.000000)">
+                    <rect id="矩形" x="0" y="0" width="24" height="24" rx="2"></rect>
+                    <g id="搜索icon" transform="translate(6.566843, 6.500000)">
+                        <circle id="椭圆形" stroke="#545454" stroke-width="1.3" fill-rule="nonzero" cx="5.5" cy="5.5" r="4.85"></circle>
+                        <path d="M11,7.52967054 C11.3690507,7.52967054 11.6682255,7.82884527 11.6682255,8.197896 L11.6682255,10.5281117 C11.6682255,10.8971625 11.3690507,11.1963372 11,11.1963372 C10.6309493,11.1963372 10.3317745,10.8971625 10.3317745,10.5281117 L10.3317745,8.197896 C10.3317745,7.82884527 10.6309493,7.52967054 11,7.52967054 Z" id="矩形" fill="#545454" transform="translate(11.000000, 9.363004) rotate(-53.000000) translate(-11.000000, -9.363004) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

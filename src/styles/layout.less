@@ -1,0 +1,132 @@
+@import './mixin.less';
+
+.tableClass {
+  :global {
+    .ant-spin-nested-loading {
+      position: static;
+    }
+
+    .ant-spin-container {
+      position: inherit;
+    }
+
+    .ant-table-pagination {
+      background: #ffffff;
+      position: absolute;
+      display: inline-block;
+      bottom: 0px;
+      margin: 20px 0px;
+    }
+  }
+}
+
+// 布局整体容器
+.layoutsContainer {
+  flex: 1;
+  background: #ffffff;
+  position: relative;
+  height: 100%;
+
+  > .ant-spin-nested-loading {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+  }
+}
+
+// 布局时的线条
+.layoutsLine {
+  height: 1px;
+  overflow: hidden;
+  background: #f3f3f3;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+// 布局头部
+.layoutsHeader {
+  padding: 10px 20px 0px 20px;
+
+  .layoutsTool {
+    margin-bottom: 10px;
+    .clearfix();
+
+    .layoutsToolLeft {
+      float: left;
+      line-height: 28px;
+      ul {
+        .clearfix();
+        li {
+          float: left;
+          line-height: 28px;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .layoutsToolRight {
+      float: right;
+      ul {
+        .clearfix();
+        li {
+          line-height: 28px;
+          float: left;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .layoutsSearch {
+    .clearfix();
+
+    .layoutsSearchContent {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-right: 55px;
+    }
+
+    .layoutsSearchItem {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      row-gap: 10px;
+    }
+  }
+  .layoutsSearch > ul > li {
+    line-height: 28px;
+    float: left;
+    margin-right: 10px;
+    height: 28px;
+    margin-bottom: 10px;
+  }
+}
+// 隔开头部和内容区域的线条
+.layoutsLineBlock {
+  height: 15px;
+  background: #f3f3f3;
+  padding: 0 20px;
+  text-align: right;
+  & > .layouts-lineblock-icon {
+    margin-left: 10px;
+  }
+  & > .layouts-lineblock-icon:hover {
+    path {
+      fill: #18a786;
+    }
+  }
+}
+
+// 提示信息区域
+.layoutsMsg {
+  margin-bottom: 20px;
+}
+
+// 布局主要内容区域
+.layoutsContent {
+  .clearfix();
+  padding: 20px;
+  box-sizing: border-box;
+}

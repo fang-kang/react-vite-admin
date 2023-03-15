@@ -1,0 +1,37 @@
+// 当文字超过指定宽度后 显示...
+.text-ellipsis(@width: 100%) {
+  overflow: hidden; /* Opera */
+  max-width: @width;
+  text-overflow: ellipsis; /* IE, Safari (WebKit) */
+  white-space: nowrap;
+}
+
+// 清除浮动
+.clearfix() {
+  *zoom: 1;
+  &::before,
+  &::after {
+    display: table;
+    content: ' ';
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+// 模糊效果
+.blur(@depth: 1px) {
+  opacity: 0.7;
+  filter: blur(@depth);
+  transform: translateZ(0);
+}
+
+// text overflow ellipsis - multi line
+.text-box-ellipsis(@line: 3) {
+  display: -webkit-box;
+  overflow: hidden; /* Opera */
+  text-overflow: ellipsis; /* IE, Safari (WebKit) */
+  word-break: break-all;
+  -webkit-line-clamp: @line;
+  -webkit-box-orient: vertical;
+}
