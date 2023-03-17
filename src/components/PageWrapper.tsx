@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Spin, Table, Tooltip } from 'antd';
 import mitt from 'mitt';
 import { SearchPanelHOC } from './SearchPanelHOC';
-import { OADate } from '@/utils';
+import { OADate, onWindowResize } from '@/utils';
 import { If } from '@/components/If';
 import { LogoutOutlined, SearchOutlined } from '@ant-design/icons';
 import { Search } from '@/components/Search';
@@ -193,6 +193,7 @@ export class PageWrapper5S<T> extends React.Component<ITableWrapper<T>> {
     selectedRowKeys: [] as string[],
     queryParams: '',
     scrollX: 0,
+    tableHeight: 0,
   };
 
   constructor(props: ITableWrapper) {
@@ -244,10 +245,13 @@ export class PageWrapper5S<T> extends React.Component<ITableWrapper<T>> {
     this.state.columns = this.columns;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.resize();
+    window.addEventListener('resize', this.resize);
     const scrollX: number = this.props.columns.reduce((num: number, column: any): number => {
       return (num += (column.width as number) || 135);
     }, 0);
+
     this.getData();
 
     this.setState({
@@ -286,9 +290,20 @@ export class PageWrapper5S<T> extends React.Component<ITableWrapper<T>> {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
     emitter.off('show-loading');
     emitter.off('hide-loading');
   }
+
+  resize = () => {
+    const tableHeight = onWindowResize(135);
+    this.setState(() => {
+      console.log(tableHeight, 'tableHeight');
+      return {
+        tableHeight,
+      };
+    });
+  };
 
   getData = () => {
     this.setState({ loading: true });
@@ -415,7 +430,7 @@ export class PageWrapper5S<T> extends React.Component<ITableWrapper<T>> {
 
   render() {
     const { businessType, searchTypeList = [], getSearchs, getHeaderActions } = this.props;
-    const { dataSource, currentSearchParams, showColSelect, columns, selectedRowKeys, size, current } = this.state;
+    const { dataSource, currentSearchParams, tableHeight, columns, selectedRowKeys, size, current } = this.state;
 
     const search = getSearchs?.(this.onSearchChange, (defaultSearchs) => {
       this.params = { ...defaultSearchs, ...this.params };
@@ -432,7 +447,7 @@ export class PageWrapper5S<T> extends React.Component<ITableWrapper<T>> {
     };
 
     return (
-      <Spin spinning={this.state.loading}>
+      <Spin spinning={this.state.loading} style={{ height: '100%' }}>
         <div className="layoutsContainer">
           <div className="layoutsHeader">
             <div className="layoutsTool">
@@ -578,9 +593,10 @@ export class PageWrapper5S<T> extends React.Component<ITableWrapper<T>> {
                 return o;
               })}
               dataSource={dataSource}
-              scroll={{ x: this.state.scrollX, y: '80vh' }}
+              scroll={{ x: this.state.scrollX, y: tableHeight }}
               pagination={{
                 pageSize: this.state.size,
+                position: ['bottomLeft'],
                 showQuickJumper: true,
                 showSizeChanger: true,
                 current: this.state.current,

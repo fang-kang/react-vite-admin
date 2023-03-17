@@ -1,4 +1,4 @@
-import { PageWrapper5S } from '@/Layout/components/PageWrapper5S';
+import { PageWrapper5S } from '@/components/PageWrapper';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, DatePicker, Input, Modal, Popover, Select, Tooltip } from 'antd';
 import dayjs from 'dayjs';
@@ -331,8 +331,13 @@ const columns = [
   },
 ];
 
-export default function Child1() {
+export default function Child1(props: any) {
+  console.log(props, '==');
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    console.log('init');
+  }, []);
 
   return (
     <>

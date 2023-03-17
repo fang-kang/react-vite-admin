@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Layout } from './Layout';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Layout } from './layout';
 import Login from './pages/Login';
 import { IMenu, menuList } from './router';
 import { setActiveTab, setTabList } from './store/modules/global';
@@ -21,11 +21,13 @@ const App = () => {
     }
   }, [location]);
 
-  if (location.pathname === '/login') {
-    return <Login />;
-  }
-
-  return <Layout />;
+  return (
+    <Routes>
+      <Route path="/" index element={<Layout />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<Layout />} />
+    </Routes>
+  );
 };
 
 export default App;

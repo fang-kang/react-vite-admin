@@ -1,7 +1,7 @@
 declare interface ITab {
   key: string;
   label: string;
-  children: any;
+  children: React.ReactNode;
   closable?: boolean;
 }
 

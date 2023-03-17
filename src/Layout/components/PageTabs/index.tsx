@@ -11,7 +11,7 @@ export const PageTabs: React.FC = () => {
 
   const { tabList, activeTab } = useSelector((store: RootState) => store.global);
 
-  console.log(tabList, '=tabList==');
+  //   console.log(tabList, '=tabList==');
   const onChange = (key: string) => {
     navigate(key);
     dispatch(setActiveTab(key));
@@ -35,11 +35,7 @@ export const PageTabs: React.FC = () => {
       hideAdd={true}
       animated={false}
       activeKey={activeTab}
-      items={tabList.map((v) => {
-        return {
-          ...v,
-        };
-      })}
+      items={tabList}
       onChange={onChange}
       onEdit={onEdit}
     />

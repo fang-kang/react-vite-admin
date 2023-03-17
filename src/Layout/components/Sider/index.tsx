@@ -1,6 +1,6 @@
 import { Layout, Menu } from 'antd';
 import { UserMenu } from './UserMenu';
-import { IMenu, menuList } from '@/router';
+import { getMenuList, IMenu, menuList } from '@/router';
 import { useNavigate } from 'react-router-dom';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useSelector, useDispatch } from 'react-redux';
@@ -51,7 +51,7 @@ export const Sider: React.FC<IProps> = (props: IProps) => {
 
   const filterMenuList = menuList.filter((v) => !v.isHide);
 
-  console.log(filterMenuList, 'filterMenuList');
+  //   console.log(filterMenuList, 'filterMenuList');
 
   return (
     <Layout.Sider
@@ -72,7 +72,7 @@ export const Sider: React.FC<IProps> = (props: IProps) => {
         onSelect={(item) => {
           navigate(item.key);
           dispatch(setActiveTab(item.key));
-          const menu = findItemByKey(menuList, 'path', item.key) as IMenu;
+          const menu = findItemByKey(getMenuList({ a: 1 }), 'path', item.key) as IMenu;
           menu && dispatch(setTabList(menu));
         }}
         onOpenChange={(openKeys) => {
