@@ -59,7 +59,7 @@ export const global = createSlice({
         .split('/')
         .filter(Boolean)
         .map((v) => `/${v}`);
-      //   console.log(arr, 'arr');
+
       state.activeTab = payload;
       state.openKeys = [...arr];
       window.$activeTab = payload;

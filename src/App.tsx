@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useLocationListen } from './hooks';
 import { Layout } from './layout';
 import Login from './pages/Login';
 import { IMenu, menuList } from './router';
@@ -8,18 +8,17 @@ import { setActiveTab, setTabList } from './store/modules/global';
 import { findItemByKey } from './utils';
 
 const App = () => {
-  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useLocationListen((location) => {
     const menu = findItemByKey(menuList, 'path', location.pathname) as IMenu;
     if (menu && menu.path !== window.$activeTab) {
       navigate(menu.path);
       dispatch(setActiveTab(menu.path));
       dispatch(setTabList(menu));
     }
-  }, [location]);
+  });
 
   return (
     <Routes>

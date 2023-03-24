@@ -42,16 +42,19 @@ export const Sider: React.FC<IProps> = (props: IProps) => {
         label: title,
         children,
       } as any;
+
       if (children && children.length > 0) {
         currentRouter.children = renderItems(children);
       }
+
       return currentRouter;
     });
   };
 
   const filterMenuList = menuList.filter((v) => !v.isHide);
 
-  //   console.log(filterMenuList, 'filterMenuList');
+  console.log(filterMenuList, 'filterMenuList');
+  console.log(open, 'open');
 
   return (
     <Layout.Sider
@@ -69,15 +72,20 @@ export const Sider: React.FC<IProps> = (props: IProps) => {
         mode="inline"
         theme="dark"
         items={renderItems(filterMenuList)}
-        onSelect={(item) => {
+        onOpenChange={(openKeys) => {
+          console.log(openKeys, 'openKeys');
+          console.log(open, 'open');
+          const keys = [...new Set([...open, ...openKeys])];
+          console.log(keys, 'keys');
+          setOpen(keys);
+          window.$openKeys = keys;
+        }}
+        onClick={(item) => {
+          console.log(item, 'item-click');
           navigate(item.key);
           dispatch(setActiveTab(item.key));
           const menu = findItemByKey(getMenuList({ a: 1 }), 'path', item.key) as IMenu;
           menu && dispatch(setTabList(menu));
-        }}
-        onOpenChange={(openKeys) => {
-          setOpen([...open, ...openKeys]);
-          window.$openKeys = [...open, ...openKeys];
         }}
       />
     </Layout.Sider>

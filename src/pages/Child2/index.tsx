@@ -1,6 +1,7 @@
 import { RootState } from '@/store';
 import { asyncIncrement, increment } from '@/store/modules/counter';
 import { Button } from 'antd';
+import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Counter(props: any) {
@@ -14,6 +15,17 @@ export default function Counter(props: any) {
   const changeNumberAsync = (num: number) => {
     dispatch(asyncIncrement({ step: num }) as any);
   };
+
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      console.log('init======>');
+    } else {
+      console.log('updated');
+    }
+  });
   return (
     <div>
       <h2>Counter</h2>

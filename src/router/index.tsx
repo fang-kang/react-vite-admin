@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 import Child1 from '@/pages/Child1';
 import Child2 from '@/pages/Child2';
 import Home from '@/pages/Home';
-import NotFound from '@/pages/NotFound';
 import { HomeOutlined } from '@ant-design/icons';
+import NotFound from '@/pages/NotFound';
 
 export interface IMenu {
   path: string;
@@ -28,7 +28,20 @@ export const menuList: IMenu[] = [
         icon: <HomeOutlined />,
         title: '测试1-111',
       },
-      { path: '/child1/2', component: <Child2 />, icon: <HomeOutlined />, title: '测试1-222' },
+      {
+        path: '/child1/2',
+        component: <Child2 />,
+        icon: <HomeOutlined />,
+        title: '测试1-222',
+        children: [
+          {
+            path: '/child1/2/222',
+            component: <NotFound />,
+            icon: <HomeOutlined />,
+            title: '测试1-2-222',
+          },
+        ],
+      },
     ],
   },
   {
@@ -45,7 +58,6 @@ export const menuList: IMenu[] = [
       { path: '/child2/2', component: <Child2 />, icon: <HomeOutlined />, title: '测试2-222' },
     ],
   },
-  //   { path: '*', component: <NotFound />, isHide: true, title: '找不到页面' },
 ];
 
 export const getMenuList = (props: any): IMenu[] => {
@@ -62,7 +74,20 @@ export const getMenuList = (props: any): IMenu[] => {
           icon: <HomeOutlined />,
           title: '测试1-111',
         },
-        { path: '/child1/2', component: <Child2 {...props} />, icon: <HomeOutlined />, title: '测试1-222' },
+        {
+          path: '/child1/2',
+          component: <Child2 {...props} />,
+          icon: <HomeOutlined />,
+          title: '测试1-222',
+          children: [
+            {
+              path: '/child1/2/222',
+              component: <NotFound />,
+              icon: <HomeOutlined />,
+              title: '测试1-2-222',
+            },
+          ],
+        },
       ],
     },
     {
@@ -79,6 +104,5 @@ export const getMenuList = (props: any): IMenu[] => {
         { path: '/child2/2', component: <Child2 {...props} />, icon: <HomeOutlined />, title: '测试2-222' },
       ],
     },
-    //   { path: '*', component: <NotFound />, isHide: true, title: '找不到页面' },
   ];
 };
